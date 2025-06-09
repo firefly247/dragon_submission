@@ -9,20 +9,30 @@ from dragon_baseline import DragonBaseline
 
 
 class DragonSubmission(DragonBaseline):
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        model_name: str = "joeranbosma/dragon-roberta-base-mixed-domain",
+        per_device_train_batch_size: int = 4,
+        gradient_accumulation_steps: int = 2,
+        gradient_checkpointing: bool = False,
+        max_seq_length: int = 512,
+        learning_rate: float = 1e-5,
+        num_train_epochs: int = 5,
+        **kwargs
+    ):
         # Example of how to adapt the DRAGON baseline to use a different model
         """
         Adapt the DRAGON baseline to use the joeranbosma/dragon-roberta-base-mixed-domain model.
         Note: when changing the model, update the Dockerfile to pre-download that model.
         """
         super().__init__(**kwargs)
-        self.model_name = "joeranbosma/dragon-roberta-base-mixed-domain"
-        self.per_device_train_batch_size = 4
-        self.gradient_accumulation_steps = 2
-        self.gradient_checkpointing = False
-        self.max_seq_length = 512
-        self.learning_rate = 1e-05
-        self.num_train_epochs = 5
+        self.model_name = model_name
+        self.per_device_train_batch_size = per_device_train_batch_size
+        self.gradient_accumulation_steps = gradient_accumulation_steps
+        self.gradient_checkpointing = gradient_checkpointing
+        self.max_seq_length = max_seq_length
+        self.learning_rate = learning_rate
+        self.num_train_epochs = num_train_epochs
 
     def custom_text_cleaning(self, text: Union[str, List[str]]) -> Union[str, List[str]]:
         """

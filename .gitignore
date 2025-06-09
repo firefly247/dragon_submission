@@ -110,3 +110,6 @@ ENV/
 # Custom
 .DS_Store
 *.tar.gz
+
+test-output/
+test-workdir/
