@@ -1,6 +1,10 @@
 import re
 from typing import List, Union
 
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent / "dragon_baseline" / "src"))
+
 from dragon_baseline import DragonBaseline
 
 
