@@ -26,8 +26,9 @@ if __name__ == "__main__":
     # evaluate the predictions
     DragonEval(
         ground_truth_path=Path("test-ground-truth"),
-        predictions_path=Path(f"test-output/{job_name}"),
+        predictions_path=Path(f"test-output"),
         output_file=Path("test-output/metrics.json"),
+        folds=[0]
     ).evaluate()
 
     print("Please check that all performances are above random guessing! For tasks 101-107, the performance should be above 0.7, for tasks 108-109 above 0.2.")
