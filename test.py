@@ -37,7 +37,7 @@ if __name__ == "__main__":
             output_path_pred3 = Path(f"test-output/{job_name}_model3")
 
             # 모델 1
-            model1 = DragonSubmission(input_path=input_path, output_path=output_path_pred1, workdir=workdir1, model_name="joeranbosma/dragon-roberta-base-mixed-domain")
+            model1 = DragonSubmission(input_path=input_path, output_path=output_path_pred1, workdir=workdir1, model_name="joeranbosma/dragon-roberta-large-domain-specific")
             model1.load()
             model1.validate()
             model1.analyze()
@@ -57,7 +57,7 @@ if __name__ == "__main__":
             model2.save(pred2)
 
             # 모델 3
-            model3 = DragonSubmission(input_path=input_path, output_path=output_path_pred3, workdir=workdir3, model_name="joeranbosma/dragon-roberta-base-domain-specific")
+            model3 = DragonSubmission(input_path=input_path, output_path=output_path_pred3, workdir=workdir3, model_name="joeranbosma/dragon-roberta-base-mixed-domain")
             model3.load()
             model3.validate()
             model3.analyze()
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     DragonEval(
         ground_truth_path=Path("test-ground-truth"),
         predictions_path=Path(f"test-output"),
-        output_file=Path("test-output/metrics_ensemble.json"),
+        output_file=Path("test-output/metrics.json"),
         folds=[0]
     ).evaluate()
 
