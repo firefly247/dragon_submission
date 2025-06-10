@@ -24,7 +24,7 @@ if __name__ == "__main__":
             "Task109_Example_ml_ner-fold0"
         ]:
             input_path = Path(f"test-input/{job_name}")
-            output_path_ensemble = Path(f"test-output/{job_name}_ensemble")
+            output_path = Path(f"test-output/{job_name}")
         
             # 모델별 workdir
             workdir1 = Path(f"test-workdir/{job_name}_model1")
@@ -68,8 +68,8 @@ if __name__ == "__main__":
 
             # 앙상블 예측
             ensemble_pred = ensemble_predictions([pred1, pred2, pred3], model1.task.target.problem_type)
-            model_ensemble = DragonSubmission(input_path=input_path, output_path = output_path_ensemble)
-            test_predictions_ensemble_path = output_path_ensemble / "nlp-predictions-dataset.json"
+            model_ensemble = DragonSubmission(input_path=input_path, output_path = output_path)
+            test_predictions_ensemble_path = output_path / "nlp-predictions-dataset.json"
             test_predictions_ensemble_path.parent.mkdir(parents=True, exist_ok=True)
             ensemble_pred.to_json(test_predictions_ensemble_path, orient="records")   
 
@@ -78,13 +78,6 @@ if __name__ == "__main__":
             #     output_path=Path(f"test-output/{job_name}"),
             #     workdir=Path(f"test-workdir/{job_name}"),
             # ).process()
-
-    # DragonEval(
-    #     ground_truth_path=Path("test-ground-truth"),
-    #     predictions_path=Path(f"test-output"),
-    #     output_file=Path("test-output/metrics.json"),
-    #     folds=[0]
-    # ).evaluate()
 
     DragonEval(
         ground_truth_path=Path("test-ground-truth"),
