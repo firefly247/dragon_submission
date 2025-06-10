@@ -11,7 +11,7 @@ from dragon_baseline import DragonBaseline
 class DragonSubmission(DragonBaseline):
     def __init__(
         self,
-        model_name: str = "joeranbosma/dragon-roberta-base-mixed-domain",
+        model_name: str = "joeranbosma/dragon-bert-base-mixed-domain",
         per_device_train_batch_size: int = 4,
         gradient_accumulation_steps: int = 2,
         gradient_checkpointing: bool = False,

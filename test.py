@@ -37,7 +37,7 @@ if __name__ == "__main__":
             output_path_pred3 = Path(f"test-output/{job_name}_model3")
 
             # 모델 1
-            model1 = DragonSubmission(input_path=input_path, output_path=output_path_pred1, workdir=workdir1, model_name="distilbert-base-multilingual-cased")
+            model1 = DragonSubmission(input_path=input_path, output_path=output_path_pred1, workdir=workdir1, model_name="joeranbosma/dragon-roberta-base-mixed-domain")
             model1.load()
             model1.validate()
             model1.analyze()
@@ -47,23 +47,23 @@ if __name__ == "__main__":
             model1.save(pred1)
 
             # 모델 2
-            model2 = DragonSubmission(input_path=input_path, output_path=output_path_pred2, workdir=workdir2, model_name="xlm-roberta-base")
+            model2 = DragonSubmission(input_path=input_path, output_path=output_path_pred2, workdir=workdir2, model_name="joeranbosma/dragon-bert-base-mixed-domain")
             model2.load()
             model2.validate()
             model2.analyze()
             model2.preprocess()
             model2.train()
-            pred2 = model2.predict(df=model2.df_test)  # model1과 같은 test 사용
+            pred2 = model2.predict(df=model2.df_test)
             model2.save(pred2)
 
             # 모델 3
-            model3 = DragonSubmission(input_path=input_path, output_path=output_path_pred3, workdir=workdir3, model_name="allenai/longformer-base-4096")
+            model3 = DragonSubmission(input_path=input_path, output_path=output_path_pred3, workdir=workdir3, model_name="joeranbosma/dragon-roberta-base-domain-specific")
             model3.load()
             model3.validate()
             model3.analyze()
             model3.preprocess()
             model3.train()
-            pred3 = model3.predict(df=model3.df_test)  # model1과 같은 test 사용
+            pred3 = model3.predict(df=model3.df_test)
             model3.save(pred3)
 
             # 앙상블 예측
@@ -79,13 +79,18 @@ if __name__ == "__main__":
             #     workdir=Path(f"test-workdir/{job_name}"),
             # ).process()
 
-    dragonEval = DragonEval(
+    # DragonEval(
+    #     ground_truth_path=Path("test-ground-truth"),
+    #     predictions_path=Path(f"test-output"),
+    #     output_file=Path("test-output/metrics.json"),
+    #     folds=[0]
+    # ).evaluate()
+
+    DragonEval(
         ground_truth_path=Path("test-ground-truth"),
         predictions_path=Path(f"test-output"),
         output_file=Path("test-output/metrics_ensemble.json"),
         folds=[0]
-    )
-
-    dragonEval.evaluate()
+    ).evaluate()
 
     print("Please check that all performances are above random guessing! For tasks 101-107, the performance should be above 0.7, for tasks 108-109 above 0.2.")
