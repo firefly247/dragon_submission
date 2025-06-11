@@ -74,7 +74,7 @@ if __name__ == "__main__":
     # model1.save(pred1)
 
     # 모델 2
-    model2 = DragonSubmission(model_name="joeranbosma/dragon-bert-base-mixed-domain")
+    model2 = DragonSubmission(model_name="joeranbosma/dragon-roberta-large-mixed-domain")
     model2.load()
     model2.validate()
     model2.analyze()
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     # model2.save(pred2)
 
     # 모델 3
-    model3 = DragonSubmission(model_name="joeranbosma/dragon-roberta-base-mixed-domain")
+    model3 = DragonSubmission(model_name="joeranbosma/dragon-longformer-large-domain-specific")
     model3.load()
     model3.validate()
     model3.analyze()
