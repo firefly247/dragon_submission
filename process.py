@@ -76,10 +76,20 @@ if __name__ == "__main__":
     workdir2 = Path(f"/opt/app/model2")
     workdir3 = Path(f"/opt/app/model3")
 
+    # 생성
+    workdir1.mkdir(parents=True, exist_ok=True)
+    workdir2.mkdir(parents=True, exist_ok=True)
+    workdir3.mkdir(parents=True, exist_ok=True)
+
     # 저장 경로 설정
     output_path_pred1 = Path(f"/output/model1")
     output_path_pred2 = Path(f"/output/model2")
     output_path_pred3 = Path(f"/output/model3")
+
+    # 생성
+    output_path_pred1.mkdir(parents=True, exist_ok=True)
+    output_path_pred2.mkdir(parents=True, exist_ok=True)
+    output_path_pred3.mkdir(parents=True, exist_ok=True)
 
     # 모델 1
     model1 = DragonSubmission(output_path=output_path_pred1, workdir=workdir1, model_name="joeranbosma/dragon-roberta-large-domain-specific")
