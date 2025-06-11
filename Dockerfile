@@ -16,11 +16,16 @@ RUN python -m pip install --user -U pip && python -m pip install --user pip-tool
 # Install the requirements
 COPY --chown=user:user requirements.txt .
 RUN python -m pip install --user -r requirements.txt
+RUN git submodule update --init --recursive
 
 # Download the model, tokenizer and metrics
 COPY --chown=user:user download_model.py .
 # Download the model you want to use, e.g.:
+# RUN python download_model.py --model_name joeranbosma/dragon-roberta-base-mixed-domain
+RUN python download_model.py --model_name joeranbosma/dragon-roberta-large-domain-specific
+RUN python download_model.py --model_name joeranbosma/dragon-bert-base-mixed-domain
 RUN python download_model.py --model_name joeranbosma/dragon-roberta-base-mixed-domain
+
 COPY --chown=user:user download_metrics.py .
 RUN python download_metrics.py
 
