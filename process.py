@@ -2,12 +2,9 @@ import re
 from typing import List, Union
 import sys
 from pathlib import Path
-sys.path.append(str(Path(__file__).parent / "dragon_baseline" / "src"))
+sys.path.insert(str(Path(__file__).parent / "dragon_baseline" / "src"))
 
-from dragon_baseline import DragonBaseline
-from pathlib import Path
-from dragon_eval import DragonEval
-from dragon_baseline import ensemble_predictions
+from dragon_baseline import DragonBaseline, ensemble_predictions
 
 class DragonSubmission(DragonBaseline):
     def __init__(
