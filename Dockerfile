@@ -16,7 +16,7 @@ RUN python -m pip install --user -U pip && python -m pip install --user pip-tool
 # Install the requirements
 COPY --chown=user:user requirements.txt .
 RUN python -m pip install --user -r requirements.txt
-RUN git submodule update --init --recursive
+COPY --chown=user:user dragon_baseline ./dragon_baseline
 
 # Download the model, tokenizer and metrics
 COPY --chown=user:user download_model.py .

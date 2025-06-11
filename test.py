@@ -73,12 +73,6 @@ if __name__ == "__main__":
             test_predictions_ensemble_path.parent.mkdir(parents=True, exist_ok=True)
             ensemble_pred.to_json(test_predictions_ensemble_path, orient="records")   
 
-            # DragonSubmission(
-            #     input_path=Path(f"test-input/{job_name}"),
-            #     output_path=Path(f"test-output/{job_name}"),
-            #     workdir=Path(f"test-workdir/{job_name}"),
-            # ).process()
-
     DragonEval(
         ground_truth_path=Path("test-ground-truth"),
         predictions_path=Path(f"test-output"),
