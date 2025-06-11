@@ -2,7 +2,7 @@ import re
 from typing import List, Union
 import sys
 from pathlib import Path
-sys.path.insert(str(Path(__file__).parent / "dragon_baseline" / "src"))
+sys.path.insert(0, str(Path(__file__).parent / "dragon_baseline" / "src"))
 
 from dragon_baseline import DragonBaseline, ensemble_predictions
 
