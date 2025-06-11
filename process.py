@@ -96,6 +96,6 @@ if __name__ == "__main__":
     # 앙상블
     ensemble_pred = ensemble_predictions([pred1, pred2, pred3], model1.task.target.problem_type)
     model_ensemble = DragonSubmission()
-    model_ensemble.load()
+    model_ensemble.task = model1.task
     model_ensemble.save(ensemble_pred)
     model_ensemble.verify_predictions()
