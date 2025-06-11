@@ -69,57 +69,35 @@ class DragonSubmission(DragonBaseline):
 if __name__ == "__main__":
     # DragonSubmission().process()
 
-    # Note: to debug (outside of Docker), you can set the input and output paths.
-
-    # 모델별 workdir
-    workdir1 = Path(f"/opt/app/model1")
-    workdir2 = Path(f"/opt/app/model2")
-    workdir3 = Path(f"/opt/app/model3")
-
-    # 생성
-    workdir1.mkdir(parents=True, exist_ok=True)
-    workdir2.mkdir(parents=True, exist_ok=True)
-    workdir3.mkdir(parents=True, exist_ok=True)
-
-    # 저장 경로 설정
-    output_path_pred1 = Path(f"/output/model1")
-    output_path_pred2 = Path(f"/output/model2")
-    output_path_pred3 = Path(f"/output/model3")
-
-    # 생성
-    output_path_pred1.mkdir(parents=True, exist_ok=True)
-    output_path_pred2.mkdir(parents=True, exist_ok=True)
-    output_path_pred3.mkdir(parents=True, exist_ok=True)
-
     # 모델 1
-    model1 = DragonSubmission(output_path=output_path_pred1, workdir=workdir1, model_name="joeranbosma/dragon-roberta-large-domain-specific")
+    model1 = DragonSubmission(model_name="joeranbosma/dragon-roberta-large-domain-specific")
     model1.load()
     model1.validate()
     model1.analyze()
     model1.preprocess()
     model1.train()
     pred1 = model1.predict(df=model1.df_test)
-    model1.save(pred1)
+    # model1.save(pred1)
 
     # 모델 2
-    model2 = DragonSubmission(output_path=output_path_pred2, workdir=workdir2, model_name="joeranbosma/dragon-bert-base-mixed-domain")
+    model2 = DragonSubmission(model_name="joeranbosma/dragon-bert-base-mixed-domain")
     model2.load()
     model2.validate()
     model2.analyze()
     model2.preprocess()
     model2.train()
     pred2 = model2.predict(df=model2.df_test)
-    model2.save(pred2)
+    # model2.save(pred2)
 
     # 모델 3
-    model3 = DragonSubmission(output_path=output_path_pred3, workdir=workdir3, model_name="joeranbosma/dragon-roberta-base-mixed-domain")
+    model3 = DragonSubmission(model_name="joeranbosma/dragon-roberta-base-mixed-domain")
     model3.load()
     model3.validate()
     model3.analyze()
     model3.preprocess()
     model3.train()
     pred3 = model3.predict(df=model3.df_test)
-    model3.save(pred3)
+    # model3.save(pred3)
 
     # 앙상블
     ensemble_pred = ensemble_predictions([pred1, pred2, pred3], model1.task.target.problem_type)
